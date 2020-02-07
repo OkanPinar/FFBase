@@ -152,7 +152,7 @@ namespace FFBase.Collections
                 if (!attributes.OfType<ExpandableObjectAttribute>().Any())
                 {
                     var newAttributes = new Attribute[attributes.Count + 1];
-                    attributes.CopyTo(newAttributes, newAttributes.Length - 1);
+                    attributes.CopyTo(newAttributes, 1);
                     newAttributes[0] = new ExpandableObjectAttribute();
 
                     attributes = new AttributeCollection(newAttributes);
@@ -194,6 +194,11 @@ namespace FFBase.Collections
         public NotifiableList()
         {
 
+        }
+
+        public NotifiableList(IEnumerable<T> collection)
+        {
+            _items.AddRange(collection);
         }
 
         public T this[int index] 
